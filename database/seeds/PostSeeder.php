@@ -15,10 +15,13 @@ class PostSeeder extends Seeder
     {
         for ($i=0; $i < 20; $i++) { 
             $newPost = new Post();
+            
+            $newPost->category_id = $faker->numberBetween(1, 10);
+
             $newPost->author = $faker->name();
             $newPost->title = $faker->sentence(5);
             $newPost->body = $faker->text();
-            $newPost->category = $faker->word();
+            // $newPost->category = $faker->word();
             // $newPost->created_at = $faker->date();
             // $newPost->updated_at = $faker->date();
             $newPost->save();
