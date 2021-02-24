@@ -6,6 +6,11 @@
     <h1>All posts from API</h1>
 
     <div id="app">
-        <post-component></post-component>
+        <div class="container">
+            <div class="row justify-content-center">
+                <post-component></post-component>
+                <categories-component></categories-component>
+            </div>
+        </div>
     </div>
 @endsection

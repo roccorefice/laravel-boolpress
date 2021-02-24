@@ -1,8 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card" v-for=" post in posts ">
+    
+            <div class="col-md-10">
+                <div class="card" v-for=" post in posts" :key = "post.id">
                     <div class="card-header">{{post.title}}</div>
 
                     <div class="card-body">
@@ -14,13 +13,11 @@
                          
                         <p>creato il: {{ new Date(post.created_at).toLocaleString('it') }}</p>
                         <span></span> 
-                      
-                        <p>categoria: {{ post.category }}</p> 
+ 
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 </template>
 
 <script>

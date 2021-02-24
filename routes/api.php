@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('posts', function(){
-    return response()->json([
-        'success' => true,
-        'data' => App\Post::all()
-    ], 200);
-});
+Route::get('posts', 'API\PostController@index');
+
+Route::get('categories', 'API\CategoryController@index');
+
+
