@@ -18,4 +18,7 @@ Route::get('/', 'PageController@home')->name('home');
 //api routes
 Route::get('posts_api', 'PageController@posts_api')->name('posts_api');
 
+//resource
+Route::resource('posts', 'PostController');
+
 

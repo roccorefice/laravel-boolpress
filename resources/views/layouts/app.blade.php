@@ -23,9 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="posts_api">Posts (api)</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contacts') }}">Contacts</a>
-                    </li> --}}
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ route('posts.index')}}">All Posts</a>
+                    </li>
                 </ul>
             </nav>
         </header>

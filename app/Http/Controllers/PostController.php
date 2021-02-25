@@ -14,8 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $post = Post::all();
+        // $posts = Post::latest()->get();
+        return view('posts.index', compact('post'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,8 +27,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,8 +40,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validazione
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'body' => 'required' 
+        ]);
+
+        Post::create($validatedData);
+
+        $new_post = Post::orderBy('id', 'desc')->first();
+
+        //redirect
+        return redirect()->route('posts.show', $new_post);
     }
+
+
 
     /**
      * Display the specified resource.
@@ -46,8 +64,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -57,8 +77,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -69,8 +91,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        //validazione
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'body' => 'required' 
+         ]);
+ 
+         $post->update($validatedData);
+         return redirect()->route('posts.index');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
