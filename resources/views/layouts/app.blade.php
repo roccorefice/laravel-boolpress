@@ -24,7 +24,7 @@
                         <a class="nav-link" href="posts_api">Posts (api)</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index')}}">All Posts</a>
+                            <a class="nav-link" href="{{ route('posts.index')}}">Admin</a>
                     </li>
                 </ul>
             </nav>

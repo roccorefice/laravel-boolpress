@@ -7,7 +7,7 @@
 @endsection
 
 {{-- main-content --}}
-@section('main')
+@section('main_content')
 
 <div class="container">
     <h2>{{$post->title}}</h1>

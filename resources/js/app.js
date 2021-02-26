@@ -25,7 +25,7 @@ Vue.component('post-component', require('./components/PostComponent.vue').defaul
 
 Vue.component('categories-component', require('./components/CategoriesComponent.vue').default);
 
-Vue.component('adminpost-component', require('./components/AdminPostComponent.vue').default);
+// Vue.component('adminpost-component', require('./components/AdminPostComponent.vue').default);
 
 
 

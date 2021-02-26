@@ -16,7 +16,7 @@
                         <p>autore: {{ post.author }}</p>
                          
                         <p>creato il: {{ new Date(post.created_at).toLocaleString('it') }}</p>
-                        <p>{{ post.id }}</p>
+                       
                         
                         
                             <div class="crud">
