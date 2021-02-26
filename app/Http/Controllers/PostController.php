@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -27,7 +29,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //passare alla view con compact le variabili che contengono tutti i dati
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.create', compact('tags', 'categories'));
     }
 
 
@@ -43,12 +48,14 @@ class PostController extends Controller
         //validazione
         $validatedData = $request->validate([
             'title' => 'required',
-            'body' => 'required' 
+            'body' => 'required' ,
+            'tags' => 'exists:tags, id' //verifica se esiste lo specifico id nella tabella tag
         ]);
 
         Post::create($validatedData);
 
         $new_post = Post::orderBy('id', 'desc')->first();
+        $new_post->tags()->attach($request->tags);
 
         //redirect
         return redirect()->route('posts.show', $new_post);

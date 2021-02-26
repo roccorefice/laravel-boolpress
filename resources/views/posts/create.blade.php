@@ -32,17 +32,34 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
+
         {{-- category --}}
         <div class="form-group">
-            <label for="category">Category</label>
-              <select class="form-control" name="category" id="category">
-                <option value="{{ $category->id }}"> {{ $category->name }}</option>
+            <label for="categories">Categories</label>
+              <select class="form-control" name="categories" id="categories">
+              @foreach ($categories as $category)
+                <option value=" {{ $category->id }} "> {{ $category->name }} </option>
+              @endforeach
               </select>
         </div>
 
-        {{-- tags --}}
 
-        
+        {{-- tags --}}
+        <div class="form-group">
+          <label for="tags">Tags</label>
+          <select class="form-control w-25" name="tags[]" id="tags" multiple>
+                @if ($tags)
+                    @foreach ($tags as $tag)
+                        <option value=" {{ $tag->id }} "> {{ $tag->name }} </option>
+                    @endforeach
+                @endif
+          </select>
+        </div>
+        @error('tags')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
+
 
 
         {{-- btn submit --}}
