@@ -42,6 +42,10 @@
               @endforeach
               </select>
         </div>
+        @error('category')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
 
 
         {{-- tags --}}
@@ -58,9 +62,6 @@
         @error('tags')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-
-
-
 
         {{-- btn submit --}}
         <button type="submit" class="btn btn-primary">Submit</button>

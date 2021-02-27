@@ -49,6 +49,8 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'body' => 'required' ,
+            'id' => 'required' ,
+            'category_id' => 'required|exists:categories,id',
             'tags' => 'exists:tags, id' //verifica se esiste lo specifico id nella tabella tag
         ]);
 
@@ -84,7 +86,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.edit', compact('post', 'categories', 'tags'));
     }
 
 
@@ -101,10 +105,14 @@ class PostController extends Controller
         //validazione
         $validatedData = $request->validate([
             'title' => 'required',
-            'body' => 'required' 
+            'body' => 'required',
+            'id' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'tags' => 'exists:tags, id' 
          ]);
  
          $post->update($validatedData);
+         $post->tags()->sync($request->tags);
          return redirect()->route('posts.index');
     }
 
@@ -118,6 +126,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        
     }
 }

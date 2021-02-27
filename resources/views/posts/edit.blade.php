@@ -14,6 +14,7 @@
         @csrf
         @method('PUT')
 
+        {{-- title --}}
         <div class="form-group">
             <label for="title">Title</label>
             <input class="form-control" type="text" name="title" id="title" value="{{$post->title}}">
@@ -22,6 +23,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
+        {{-- body --}}
         <div class="form-group">
             <label for="body">Body</label>
             <textarea class="form-control" name="body" id="body" rows="3">{{$post->body}}</textarea>
@@ -29,6 +31,35 @@
         @error('body')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+
+        {{-- category --}}
+        <div class="form-group">
+            <label for="categories">Categories</label>
+            <select name="categories" id="categories">
+                @foreach($categories as $category)
+                <option value=" {{ $category->id }} "> {{ $category->name }} </option>
+                @endforeach
+            </select>
+        </div>
+        @error('category')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
+        {{-- tags --}}
+        @if($tags)
+            <div class="form-group">
+            <label for="tags">Tags</label>
+            <select class="form-control" name="tags[]" id="tags" multiple>
+                @foreach($tags as $tag)
+                <option value=" {{ $tag->id }} "> {{ $tag->name }} </option>
+                @endforeach
+            </select>
+            </div>
+        @endif
+        @error('tag')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
 
         
 
