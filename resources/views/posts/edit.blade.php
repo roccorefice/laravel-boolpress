@@ -37,7 +37,7 @@
             <label for="categories">Categories</label>
             <select name="categories" id="categories">
                 @foreach($categories as $category)
-                <option value=" {{ $category->id }} "> {{ $category->name }} </option>
+                <option value="{{ $category->id }}" {{ $category->id == $post->category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -51,7 +51,7 @@
             <label for="tags">Tags</label>
             <select class="form-control" name="tags[]" id="tags" multiple>
                 @foreach($tags as $tag)
-                <option value=" {{ $tag->id }} "> {{ $tag->name }} </option>
+                <option value="{{ $tag->id }}" {{ $post->tags->contains($tag) ? 'selected' : '' }} >{{ $tag->name }}</option>
                 @endforeach
             </select>
             </div>
@@ -59,10 +59,7 @@
         @error('tag')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-
-
         
-
         <button type="submit" class="btn btn-primary">Submit</button>
 
     </form>

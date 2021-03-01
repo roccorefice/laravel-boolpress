@@ -49,7 +49,6 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'body' => 'required' ,
-            'id' => 'required' ,
             'category_id' => 'required|exists:categories,id',
             'tags' => 'exists:tags, id' //verifica se esiste lo specifico id nella tabella tag
         ]);
@@ -106,7 +105,6 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'id' => 'required',
             'category_id' => 'required|exists:categories,id',
             'tags' => 'exists:tags, id' 
          ]);
